@@ -1,6 +1,6 @@
 /* Typography */
 .h1 {
-    @apply text-5xl font-bold;
+    @apply text-6xl font-bold;
 }
 
 .h2 {
@@ -17,7 +17,7 @@
 
 @screen md {
     .h1 {
-        @apply text-6xl;
+        @apply text-7xl;
     }
 
     .h2 {
@@ -28,7 +28,7 @@
 /* Buttons */
 .btn,
 .btn-sm {
-    @apply font-medium inline-flex items-center justify-center border border-transparent rounded-sm leading-snug transition duration-150 ease-in-out;
+    @apply font-medium inline-flex items-center justify-center rounded leading-normal transition duration-150 ease-in-out;
 }
 
 .btn {
@@ -53,7 +53,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .form-select,
 .form-checkbox,
 .form-radio {
-    @apply bg-white border border-slate-200 focus:border-blue-300;
+    @apply bg-gray-800 border border-gray-700 focus:border-blue-500;
 }
 
 .form-input,
@@ -73,7 +73,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .form-input,
 .form-textarea {
-    @apply placeholder-slate-500 leading-snug;
+    @apply placeholder-gray-500 leading-snug;
 }
 
 .form-select {

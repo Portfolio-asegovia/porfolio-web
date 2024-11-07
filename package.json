@@ -1,7 +1,7 @@
 {
     "name": "portfolio-as",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
     "browserslist": [
         "> 1%",
         "last 2 versions",
@@ -10,8 +10,8 @@
     "type": "module",
     "config": {
         "browsersync": {
-            "proxy": "localhost/lui",
-            "port": 3000
+            "proxy": "alvarosegovia.dev",
+            "port": 5150
         },
         "image": {
             "src": "src/images",

@@ -24,15 +24,13 @@ class StarterSite extends Site
         add_filter('timber/twig', array($this, 'add_to_twig'));
         add_filter('timber/twig/environment/options', [$this, 'update_twig_environment_options']);
 
-
         // $this->register_custom_postTypes();
-
         // $this->register_meta_fields();
 
         $this->register_scripts_styles();
 
-
         parent::__construct();
+
     }
 
     // private function register_meta_fields()
@@ -44,40 +42,35 @@ class StarterSite extends Site
     //     (new Custom_PostTypes())->__init();
     // }
 
-
     private function register_scripts_styles()
     {
 
         add_action('wp_enqueue_scripts', function () {
 
             wp_enqueue_style('wp-block-library');
-
-            wp_enqueue_style('dashicons');
+            // wp_enqueue_style('dashicons');
 
             wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
-
             wp_enqueue_style('box-icons', 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 
-            wp_enqueue_style('aos_css', get_stylesheet_directory_uri() . '/resources/css/vendors/aos.css', false, rand(111, 9999), 'all');
+            wp_enqueue_style('styles', THEME_DIRECTORY_URI . '/assets/css/main.css', false, THEME_VERSION);
+            wp_enqueue_style('tailwind', THEME_DIRECTORY_URI . '/assets/css/tailwind.css', false, THEME_VERSION);
+            wp_enqueue_style('aos_css', THEME_DIRECTORY_URI . '/resources/css/vendors/aos.css', false, THEME_VERSION);
 
-            wp_enqueue_style('styles', get_stylesheet_directory_uri() . '/assets/css/main.css', false, rand(111, 9999), 'all');
+            wp_enqueue_script('alpinejs', THEME_DIRECTORY_URI . '/resources/js/vendors/alpinejs.min.js', ['jquery'], THEME_VERSION, true);
+            wp_enqueue_script('aos_js', THEME_DIRECTORY_URI . '/resources/js/vendors/aos.js', ['jquery'], THEME_VERSION, true);
 
-            wp_enqueue_style('tailwind', get_stylesheet_directory_uri() . '/assets/css/tailwind.css', false, rand(111, 9999), 'all');
+            wp_enqueue_script('scriptsjs', THEME_DIRECTORY_URI . '/assets/js/scripts.js', ['jquery'], THEME_VERSION, true);
 
-            wp_enqueue_script('alpinejs', get_stylesheet_directory_uri() . '/resources/js/vendors/alpinejs.min.js', ['jquery'], rand(111, 9999), 'all');
-
-            wp_enqueue_script('aos_js', get_stylesheet_directory_uri() . '/resources/js/vendors/aos.js', ['jquery'], rand(111, 9999), 'all');
-
-            // wp_enqueue_script('lozad', get_stylesheet_directory_uri() . '/assets/js/blazy.min.js', ['jquery'], 1, 'all');
-
-            wp_enqueue_script('mainjs', get_stylesheet_directory_uri() . '/assets/js/main.js', ['jquery'], rand(111, 9999), 'all');
         });
 
         add_action('after_setup_theme', function () {
 
             add_theme_support('editor-styles');
-            add_editor_style(get_stylesheet_directory_uri() . '/assets/css/tailwind.css');
+            add_editor_style(THEME_DIRECTORY_URI . '/assets/css/tailwind.css');
+
         });
+
     }
 
     /**
@@ -103,7 +96,8 @@ class StarterSite extends Site
         $context['project_root'] = THEME_ROOT_PATH;
         $context['home_url'] = home_url();
         $context['server_name'] = (new generalFunctions())->get_TypeUrl();
-        $context['server_uri'] = get_stylesheet_directory_uri();
+
+        $context['server_uri'] = THEME_DIRECTORY_URI;
 
         return $context;
     }
@@ -284,7 +278,7 @@ class StarterSite extends Site
         $twig->addFilter(new Twig\TwigFilter('myfoo', [$this, 'myfoo']));
 
         $twig->addFunction(new Twig\TwigFunction('get_color', [new generalFunctions(), 'get_color']));
-        $twig->addFunction(new Twig\TwigFunction('_get_img', [new generalFunctions(), '_get_img']));
+        $twig->addFunction(new Twig\TwigFunction('get_file', [new generalFunctions(), 'get_file']));
 
         return $twig;
     }

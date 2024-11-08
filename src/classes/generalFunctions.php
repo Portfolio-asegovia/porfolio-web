@@ -6,14 +6,12 @@ namespace App\Classes;
 class generalFunctions
 {
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function get_TypeUrl()
     {
         if ($_SERVER['SERVER_NAME'] == 'localhost') {
-            return '/lui';
+            return '/portfolio';
         } else {
             return '';
         }
@@ -40,7 +38,7 @@ class generalFunctions
         }
     }
 
-    public function _get_img($image_id,  $type)
+    public function get_wp_img($image_id,  $type)
     {
 
         $image_url = wp_get_attachment_url($image_id);
@@ -55,25 +53,36 @@ class generalFunctions
         }
     }
 
-function minify_html($buffer) {
-    $buffer = preg_replace('/>\s+</', '><', $buffer); // Remover espacios en blanco entre etiquetas HTML
-    $buffer = preg_replace('/<!--(?!<!)[^\[>].*?-->/', '', $buffer); // Eliminar comentarios HTML
-    return $buffer;
-}
+    public function get_file($path)
+    {
 
-function start_buffer() {
-    ob_start([$this,'minify_html']);
-}
+        $files =  get_stylesheet_directory_uri() . '/resources/files';
+        $file = $files . $path;
+        return $file;
+    }
 
-function end_buffer() {
-    ob_end_flush();
-}
+    function minify_html($buffer)
+    {
+        $buffer = preg_replace('/>\s+</', '><', $buffer); // Remover espacios en blanco entre etiquetas HTML
+        $buffer = preg_replace('/<!--(?!<!)[^\[>].*?-->/', '', $buffer); // Eliminar comentarios HTML
+        return $buffer;
+    }
 
+    function start_buffer()
+    {
+        ob_start([$this, 'minify_html']);
+    }
+
+    function end_buffer()
+    {
+        ob_end_flush();
+    }
 
     function set_minify()
     {
-add_action('template_redirect', [$this, 'start_buffer']);
-add_action('shutdown', [$this, 'end_buffer']);
-
+        add_action('template_redirect', [$this, 'start_buffer']);
+        add_action('shutdown', [$this, 'end_buffer']);
     }
+
+
 }

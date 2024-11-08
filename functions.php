@@ -9,9 +9,20 @@ if (!defined('THEME_ROOT_PATH')) {
     define('THEME_ROOT_PATH', __DIR__);
 }
 
+if (!defined('THEME_DIRECTORY_URI')) {
+    define('THEME_DIRECTORY_URI', get_stylesheet_directory_uri());
+}
+
 if (!defined('THEME_NAME')) {
     define('THEME_NAME', 'portfolio');
 }
+
+if (!defined('THEME_VERSION')) {
+    $theme = wp_get_theme();
+    define('THEME_VERSION', $theme->Version);
+}
+
+
 
 // Load Composer dependencies.
 require_once THEME_ROOT_PATH . '/vendor/autoload.php';

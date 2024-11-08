@@ -13,10 +13,6 @@
             "proxy": "alvarosegovia.dev",
             "port": 5150
         },
-        "image": {
-            "src": "src/images",
-            "dist": "assets/images"
-        },
         "js": {
             "entry": "src/js/*.js",
             "output": "assets/js"
@@ -28,7 +24,7 @@
             "map": "--map"
         },
         "tailwind": {
-            "src": "src/css/tailwind.css",
+            "src": "resources/css/tailwind.css",
             "dist": "assets/css/tailwind.css"
         },
         "twig": {
@@ -36,17 +32,15 @@
         }
     },
     "scripts": {
-        "dev": "npm-run-all -p imagemin css -p browser watch --max-old-space-size=4096",
-        "browser": "cross-conf-env browser-sync \"http://$npm_package_config_browsersync_proxy\" -f \"**/*.php\" \"$npm_package_config_css_dist\" \"$npm_package_config_twig_src\" \"$npm_package_config_js_output\" \"$npm_package_config_image_dist\" --port $npm_package_config_browsersync_port",
-        "build": "run-p imagemin css vite",
+        "dev": "npm-run-all -p css -p browser watch --max-old-space-size=4096",
+        "browser": "cross-conf-env browser-sync \"http://$npm_package_config_browsersync_proxy\" -f \"**/*.php\" \"$npm_package_config_css_dist\" \"$npm_package_config_twig_src\" \"$npm_package_config_js_output\" --port $npm_package_config_browsersync_port",
+        "build": "run-p css vite",
         "css": "run-p sass tailwind",
-        "imagemin": "cross-conf-env node imagemin.mjs \"$npm_package_config_image_src/**/*\" $npm_package_config_image_dist",
         "presass": "cross-conf-env stylelint \"$npm_package_config_css_src/**/*\" --fix",
         "sass": "cross-conf-env sass $npm_package_config_css_src:$npm_package_config_css_dist --style=compressed",
         "postsass": "cross-conf-env postcss $npm_package_config_css_dist/*.css --use=autoprefixer --dir=$npm_package_config_css_dist $npm_package_config_css_map",
         "tailwind": "cross-conf-env tailwindcss -i $npm_package_config_tailwind_src -o $npm_package_config_tailwind_dist --minify",
         "vite": "vite build",
-        "watch:imagemin": "cross-conf-env onchange \"$npm_package_config_image_src/**/*\" -e \".DS_Store\" -- npm run imagemin",
         "watch:sass": "cross-conf-env onchange \"$npm_package_config_css_src/**/*\" -e \".DS_Store\" -- npm run sass",
         "watch:tailwind": "npm run tailwind -- --watch",
         "watch:vite": "npm run vite -- --watch --mode development",
@@ -56,7 +50,6 @@
         "@tailwindcss/forms": "^0.5.7",
         "@babel/core": "^7.24.5",
         "@babel/preset-env": "^7.24.5",
-        "@ixkaito/imagemin": "^0.1.0",
         "@typescript-eslint/eslint-plugin": "^7.8.0",
         "@typescript-eslint/parser": "^7.8.0",
         "autoprefixer": "^10.4.19",
@@ -65,10 +58,6 @@
         "eslint": "^9.2.0",
         "eslint-plugin-tailwindcss": "^3.15.1",
         "globby": "^14.0.1",
-        "imagemin-gifsicle": "^7.0.0",
-        "imagemin-jpegtran": "^7.0.0",
-        "imagemin-optipng": "^8.0.0",
-        "imagemin-svgo": "^10.0.1",
         "mini-css-extract-plugin": "^2.9.0",
         "npm-run-all": "^4.1.5",
         "onchange": "^7.1.0",

@@ -106,7 +106,7 @@ class StarterSite extends Site
 
     public function theme_supports()
     {
-        // Add default posts and comments RSS feed links to head.
+
         add_theme_support('automatic-feed-links');
 
         /*
@@ -171,13 +171,10 @@ class StarterSite extends Site
             )
         );
 
-        // Verificar si el menú existe
         $menu_name = 'Footer Menu';
         $menu_exists = wp_get_nav_menu_object($menu_name);
-        // Si no existe, crearlo
         if (!$menu_exists) {
             $menu_id = wp_create_nav_menu($menu_name);
-            // Añadir elementos al menú si es necesario
             wp_update_nav_menu_item($menu_id, 0, array(
                 'menu-item-title' => __('Home'),
                 'menu-item-classes' => 'home',
@@ -191,13 +188,11 @@ class StarterSite extends Site
                 ));
             }
         }
-        // Verificar si el menú existe
+
         $menu_name = 'Principal main';
         $menu_exists = wp_get_nav_menu_object($menu_name);
-        // Si no existe, crearlo
         if (!$menu_exists) {
             $menu_id = wp_create_nav_menu($menu_name);
-            // Añadir elementos al menú si es necesario
             wp_update_nav_menu_item($menu_id, 0, array(
                 'menu-item-title' => __('Home'),
                 'menu-item-classes' => 'home',
@@ -211,13 +206,11 @@ class StarterSite extends Site
                 ));
             }
         }
-        // Verificar si el menú existe
+
         $menu_name = 'Principal main right';
         $menu_exists = wp_get_nav_menu_object($menu_name);
-        // Si no existe, crearlo
         if (!$menu_exists) {
             $menu_id = wp_create_nav_menu($menu_name);
-            // Añadir elementos al menú si es necesario
             wp_update_nav_menu_item($menu_id, 0, array(
                 'menu-item-title' => __('Home'),
                 'menu-item-classes' => 'home',
@@ -231,13 +224,11 @@ class StarterSite extends Site
                 ));
             }
         }
-        // Verificar si el menú existe
+
         $menu_name = 'Socials';
         $menu_exists = wp_get_nav_menu_object($menu_name);
-        // Si no existe, crearlo
         if (!$menu_exists) {
             $menu_id = wp_create_nav_menu($menu_name);
-            // Añadir elementos al menú si es necesario
             wp_update_nav_menu_item($menu_id, 0, array(
                 'menu-item-title' => __('Home'),
                 'menu-item-classes' => 'home',

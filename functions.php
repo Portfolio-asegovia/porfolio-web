@@ -34,7 +34,8 @@ Timber\Timber::init();
 Timber::$dirname = [
     'templates',
     'src/views',
-    'src/views/pages'
+    'src/views/pages',
+    'src/views/pages/HomePage',
 ];
 
 new StarterSite();

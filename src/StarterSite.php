@@ -42,6 +42,8 @@ class StarterSite extends Site
     //     (new Custom_PostTypes())->__init();
     // }
 
+
+
     private function register_scripts_styles()
     {
 

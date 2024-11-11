@@ -22,9 +22,6 @@ if (!defined('THEME_VERSION')) {
     define('THEME_VERSION', $theme->Version);
 }
 
-
-
-// Load Composer dependencies.
 require_once THEME_ROOT_PATH . '/vendor/autoload.php';
 require_once THEME_ROOT_PATH . '/src/classes/index.php';
 require_once THEME_ROOT_PATH . '/src/StarterSite.php';

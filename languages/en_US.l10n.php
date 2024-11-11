@@ -1,0 +1,2 @@
+<?php
+return ['content-type'=>'text/plain; charset=UTF-8','project-id-version'=>'','report-msgid-bugs-to'=>'','pot-creation-date'=>'2024-11-10 23:34+0000','po-revision-date'=>'2024-11-10 23:34+0000','last-translator'=>'','language-team'=>'English (United States)','language'=>'en_US','plural-forms'=>'nplurals=2; plural=n != 1;','mime-version'=>'1.0','content-transfer-encoding'=>'8bit','x-generator'=>'Loco https://localise.biz/','x-loco-version'=>'2.6.11; wp-6.6.2','messages'=>['HOLA MUNDO'=>'Hello World']];

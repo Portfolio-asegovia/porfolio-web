@@ -16,6 +16,7 @@ class StarterSite extends Site
     {
 
         add_action('after_setup_theme', array($this, 'theme_supports'));
+        add_action('after_setup_theme', array($this, 'portfolio_theme_setup'));
         add_action('init', array($this, 'register_post_types'));
         add_action('init', array($this, 'register_taxonomies'));
         add_action('init', array($this, 'register_menuZones'));
@@ -30,7 +31,6 @@ class StarterSite extends Site
         $this->register_scripts_styles();
 
         parent::__construct();
-
     }
 
     // private function register_meta_fields()
@@ -63,16 +63,13 @@ class StarterSite extends Site
             wp_enqueue_script('aos_js', THEME_DIRECTORY_URI . '/resources/js/vendors/aos.js', ['jquery'], THEME_VERSION, true);
 
             wp_enqueue_script('scriptsjs', THEME_DIRECTORY_URI . '/assets/js/scripts.js', ['jquery'], THEME_VERSION, true);
-
         });
 
         add_action('after_setup_theme', function () {
 
             add_theme_support('editor-styles');
             add_editor_style(THEME_DIRECTORY_URI . '/assets/css/tailwind.css');
-
         });
-
     }
 
     /**
@@ -92,6 +89,7 @@ class StarterSite extends Site
      */
     public function add_to_context($context)
     {
+
         $context['menu']  = Timber::get_menu();
         $context['site']  = $this;
 
@@ -266,13 +264,20 @@ class StarterSite extends Site
          * Required when you want to use Twig’s template_from_string.
          * @link https://twig.symfony.com/doc/3.x/functions/template_from_string.html
          */
-        // $twig->addExtension( new Twig\Extension\StringLoaderExtension() );
 
         $twig->addFilter(new Twig\TwigFilter('myfoo', [$this, 'myfoo']));
 
         $twig->addFunction(new Twig\TwigFunction('get_color', [new generalFunctions(), 'get_color']));
         $twig->addFunction(new Twig\TwigFunction('get_file', [new generalFunctions(), 'get_file']));
 
+
+        // $twig->addFunction(new Twig\TwigFunction('__', function ($text) {
+        //     return __($text, THEME_NAME);
+        // }));
+
+        $twig->addFunction(new Twig\TwigFunction('t_e', function ($text) {
+            _e($text, THEME_NAME);
+        }));
         return $twig;
     }
 
@@ -291,4 +296,10 @@ class StarterSite extends Site
 
         return $options;
     }
+
+    function portfolio_theme_setup()
+    {
+        load_theme_textdomain(THEME_NAME, get_template_directory() . '/languages');
+    }
+
 }
